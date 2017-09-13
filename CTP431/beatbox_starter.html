@@ -83,7 +83,7 @@
     }
 
     var kick = new XMLHttpRequest();
-    kick.open("Get","Kick 01",true);   //  <---- replace this file with yours
+    kick.open("Get","Kick 01.wav",true);   //  <---- replace this file with yours
     kick.responseType = "arraybuffer";
     kick.onload = function(){
         context.decodeAudioData(kick.response, function(buffer){buffers[0] = buffer;});
