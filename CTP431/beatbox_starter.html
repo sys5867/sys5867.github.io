@@ -119,11 +119,11 @@
 
 
     function playdrum(i) {
-        //
-        //
         // fill out this funciton
-        //
-        //
+		var source = context.createBufferSource();
+		source.buffer = buffers[i];
+		source.connect(context.destination);
+		source.start();
     }
 
     function changegain(i,changedvalue){
@@ -133,11 +133,8 @@
 
     function db2gain(db_gain) {
         var gain = 1.0;
-        //
-        //
         // fill out this funciton
-        //
-        //
+
         return gain
     }
 
