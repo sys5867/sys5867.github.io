@@ -87,6 +87,7 @@
     kick.responseType = "arraybuffer";
     kick.onload = function(){
         context.decodeAudioData(kick.response, function(buffer){buffers[0] = buffer;});
+		console.log("kick load & decoded");
     }
     kick.send();
 
@@ -95,6 +96,7 @@
     snare.responseType = "arraybuffer";
     snare.onload = function(){
         context.decodeAudioData(snare.response, function(buffer){buffers[1] = buffer;});
+		console.log("snare load & decoded");
     }
     snare.send();
 
@@ -103,6 +105,7 @@
     hihat.responseType = "arraybuffer";
     hihat.onload = function(){
         context.decodeAudioData(hihat.response, function(buffer){buffers[2] = buffer;});
+		console.log("hat load & decoded");
     }
     hihat.send();
 
