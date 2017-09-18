@@ -74,24 +74,27 @@
     <input class="volume" onchange="changegain(2,this.value)" id="hihatVol" title="Hihat volume" type="range" min="-24" max ="0" value = "-12">
 </div>
 <div align = "center">
-	<button id="loopBtn" onmousedown="">Play loop</button>
+	<button id="loopBtn" onmousedown="playdrum(3)">Play loop</button>
+	<p id="loopVolLabel"></p>
+	<input class="volume" onchange="changegain(3,this.value)" id="loopVol" title="Loop volume" type="range" min="-24" max ="0" value = "-12">
 </div>
 
 <script>
     var context = new (window.AudioContext || window.webkitAudioContext)();
 
-    var buffers = new Array(3); // 0 : kick, 1 : snare, 2 : hihat
-    var volume_id = new Array("kickVol","snareVol","hihatVol");
-    var volume_label_id = new Array("kickVolLabel","snareVolLabel","hihatVolLabel");
-    var gain_nodes = new Array(3);
+    var buffers = new Array(4); // 0 : kick, 1 : snare, 2 : hihat, 3 : loop
+    var volume_id = new Array("kickVol","snareVol","hihatVol", "loopVol");
+    var volume_label_id = new Array("kickVolLabel","snareVolLabel","hihatVolLabel", "loopVolLabel");
+    var gain_nodes = new Array(4);
 
-    for (i  = 0; i < 3; i++) {
+    for (i  = 0; i < 4; i++) {
         gain_nodes[i] = context.createGain();
         var vol = document.getElementById(volume_id[i]).value;
         gain_nodes[i].gain.value = db2gain(vol);
         document.getElementById(volume_label_id[i]).innerHTML = 'Volume:  ' + vol + 'dB'; 
     }
 
+	// kick request
     var kick = new XMLHttpRequest();
     kick.open("Get","Kick 01.wav",true);   //  <---- replace this file with yours
     kick.responseType = "arraybuffer";
@@ -101,6 +104,7 @@
     }
     kick.send();
 
+	// snare request
     var snare = new XMLHttpRequest();
     snare.open("Get","Snare 01.wav",true);  //  <---- replace this file with yours
     snare.responseType = "arraybuffer";
@@ -110,7 +114,7 @@
     }
     snare.send();
 
-
+	// hihat request
     var hihat = new XMLHttpRequest();
     hihat.open("Get","HiHat 01.wav",true);  //  <---- replace this file with yours
     hihat.responseType = "arraybuffer";
@@ -119,6 +123,16 @@
 		console.log("hat load & decoded");
     }
     hihat.send();
+	
+	// loop request
+	var loop = new XMLHttpRequest();
+    loop.open("Get","Crush 2411 loop.wav",true);  //  <---- replace this file with yours
+    loop.responseType = "arraybuffer";
+    loop.onload = function(){
+        context.decodeAudioData(loop.response, function(buffer){buffers[3] = buffer;});
+		console.log("loop load & decoded");
+    }
+    loop.send();
 
 
     window.onload=function(){
@@ -141,6 +155,11 @@
 		gainNode.connect(context.destination)
 		source.start();
     }
+
+	function playLoop(){
+		var source = context.createBufferSource();
+		var gainNode = 
+	}
 
     function changegain(i,changedvalue){
         gain_nodes[i].gain.value = db2gain(changedvalue);
