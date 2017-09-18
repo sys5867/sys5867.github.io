@@ -153,6 +153,7 @@
 		source.buffer = buffers[i];
 		source.connect(gainNode);
 		gainNode.connect(context.destination)
+		if(i == 3) source.loop = true;
 		source.start();
     }
 
