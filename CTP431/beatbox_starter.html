@@ -156,11 +156,6 @@
 		source.start();
     }
 
-	function playLoop(){
-		var source = context.createBufferSource();
-		var gainNode = 
-	}
-
     function changegain(i,changedvalue){
         gain_nodes[i].gain.value = db2gain(changedvalue);
         document.getElementById(volume_label_id[i]).innerHTML = 'Volume:  ' + changedvalue + 'dB'; 
