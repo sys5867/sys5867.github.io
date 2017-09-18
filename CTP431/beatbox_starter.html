@@ -53,7 +53,7 @@
 <h1> Homework#1: Beatbox </h1>
 <br>
 <div id = "kick" align = "center">
-    <button id="kickPad" onmousedown="playdrum(0)" > Kick ('a' key)</button>
+    <button class = "btn btn-primary" id="kickPad" onmousedown="playdrum(0)" > Kick ('a' key)</button>
     <p id="kickVolLabel"></p>
     <input class="volume" onchange="changegain(0,this.value)" id="kickVol" title="Kick volume" type="range" min="-24" max ="0" value = "-12">
 </div>
@@ -139,10 +139,11 @@
     }
 
     function db2gain(db_gain) {
-        var gain = Math.pow(10, (db_gain / 20.0));
+        var gain = Math.pow(10.0, (db_gain / 20.0));
         // fill out this funciton
-		// dB = 20 * log(gain)
-		// gain = 10^(dB / 20)
+		// gain = pressure / original-pressure
+		// dB = 20.0 * log_10(P/P_0) = 20.0 * log_10(gain)
+		// gain = 10^(dB / 20.0)
 		console.log("gain changed to " + gain)
 		return gain;
     }
