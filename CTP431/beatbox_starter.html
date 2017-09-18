@@ -125,8 +125,10 @@
     function playdrum(i) {
         // fill out this funciton
 		var source = context.createBufferSource();
+		var gainNode = gain_nodes[i];
 		source.buffer = buffers[i];
 		source.connect(context.destination);
+		gainNode.connect(context.destination)
 		source.start();
     }
 
