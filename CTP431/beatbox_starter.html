@@ -100,6 +100,7 @@
     }
     snare.send();
 
+
     var hihat = new XMLHttpRequest();
     hihat.open("Get","HiHat 01.wav",true);  //  <---- replace this file with yours
     hihat.responseType = "arraybuffer";
@@ -135,11 +136,12 @@
     }
 
     function db2gain(db_gain) {
-        var gain = 1.0;
+        var gain = Math.pow(10, (db_gain / 20.0));
         // fill out this funciton
 		// dB = 20 * log(gain)
 		// gain = 10^(dB / 20)
-		return Math.pow(10, (db_gain / 20.0));
+		console.log("gain changed to " + gain)
+		return gain;
     }
 
     // keyboard mapping 
