@@ -127,7 +127,7 @@
 		var source = context.createBufferSource();
 		var gainNode = gain_nodes[i];
 		source.buffer = buffers[i];
-		source.connect(context.destination);
+		source.connect(gainNode);
 		gainNode.connect(context.destination)
 		source.start();
     }
