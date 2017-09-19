@@ -74,7 +74,7 @@
     <input class="volume" onchange="changegain(2,this.value)" id="hihatVol" title="Hihat volume" type="range" min="-24" max ="0" value = "-12">
 </div>
 <div id = "loop" align = "center">
-	<button id="loopBtn" onmousedown="playdrum(3)">Play loop</button>
+	<button id="loopBtn" onmousedown="toggleloop()">Play loop</button>
 	<p id="loopVolLabel"></p>
 	<input class="volume" onchange="changegain(3,this.value)" id="loopVol" title="Loop volume" type="range" min="-24" max ="0" value = "-12">
 </div>
@@ -86,7 +86,9 @@
     var volume_id = new Array("kickVol","snareVol","hihatVol", "loopVol");
     var volume_label_id = new Array("kickVolLabel","snareVolLabel","hihatVolLabel", "loopVolLabel");
     var gain_nodes = new Array(4);
-
+	var loopsource = null;
+	var loopflag = false;
+	
     for (i  = 0; i < 4; i++) {
         gain_nodes[i] = context.createGain();
         var vol = document.getElementById(volume_id[i]).value;
@@ -152,10 +154,28 @@
 		var gainNode = gain_nodes[i];
 		source.buffer = buffers[i];
 		source.connect(gainNode);
-		gainNode.connect(context.destination)
-		if(i == 3) source.loop = true;
+		gainNode.connect(context.destination);
 		source.start();
     }
+	
+	function toggledrum(){
+		// if loop is not playing
+		if(!loopflag){
+			var gainNode = gain_nodes[3];
+			loopsource = context.createBufferSource();
+			loopsource.buffer = buffers[3];
+			loopsource.loop = true;
+			loopsource.connect(gainNode);
+			gainNode.connect(context.destination);
+			loopsource.start();
+			loopflag = true;
+		}
+		// if loop is playing
+		else{
+			loopsource.stop();
+			loopflag = false;
+		}
+	}
 
     function changegain(i,changedvalue){
         gain_nodes[i].gain.value = db2gain(changedvalue);
