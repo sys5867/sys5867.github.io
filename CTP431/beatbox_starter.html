@@ -168,11 +168,13 @@
 			loopsource.connect(gainNode);
 			gainNode.connect(context.destination);
 			loopsource.start();
+			document.getElementById("loopBtn").innerHTML = 'Stop loop'; 
 			loopflag = true;
 		}
 		// if loop is playing
 		else{
 			loopsource.stop();
+			document.getElementById("loopBtn").innerHTML = 'Play loop'; 
 			loopflag = false;
 		}
 	}
