@@ -60,25 +60,25 @@
 <br>
 <div id = "kick" align = "center">
 	<p id="kickloading">Loading...</p>
-    <button id="kickPad" onmousedown="playdrum(0)" > Kick ('a' key)</button>
+    <button id="kickPad" onmousedown="playdrum(0)" disabled> Kick ('a' key)</button>
     <p id="kickVolLabel"></p>
     <input class="volume" onchange="changegain(0,this.value)" id="kickVol" title="Kick volume" type="range" min="-24" max ="0" value = "-12">
 </div>
 <div id = "snare" align = "center">
 	<p id="snareloading">Loading...</p>
-    <button id="snarePad" onmousedown="playdrum(1)" > Snare ('s' key)</button>
+    <button id="snarePad" onmousedown="playdrum(1)" disabled> Snare ('s' key)</button>
     <p id="snareVolLabel"></p>
     <input class="volume" onchange="changegain(1,this.value)" id="snareVol" title="Snare volume" type="range" min="-24" max ="0" value = "-12">
 </div>
 <div id = "hihat" align = "center">
 	<p id="hatloading">Loading...</p>
-    <button id="hihatPad" onmousedown="playdrum(2)"> Hihat ('l' key)</button>
+    <button id="hihatPad" onmousedown="playdrum(2)" disabled> Hihat ('l' key)</button>
     <p id="hihatVolLabel"></p>
     <input class="volume" onchange="changegain(2,this.value)" id="hihatVol" title="Hihat volume" type="range" min="-24" max ="0" value = "-12">
 </div>
 <div id = "loop" align = "center">
 	<p id="looploading">Loading...</p>
-	<button id="loopBtn" onmousedown="toggleloop()">Play loop</button>
+	<button id="loopBtn" onmousedown="toggleloop()" disabled>Play loop</button>
 	<p id="loopVolLabel"></p>
 	<input class="volume" onchange="changegain(3,this.value)" id="loopVol" title="Loop volume" type="range" min="-24" max ="0" value = "-12">
 </div>
@@ -108,6 +108,7 @@
         context.decodeAudioData(kick.response, function(buffer){buffers[0] = buffer;});
 		console.log("kick load & decoded");
 		document.getElementById("kickloading").innerHTML = 'Kick Loaded'; 
+		document.getElementById("kickPad").disabled = false;
     }
     kick.send();
 
@@ -119,6 +120,7 @@
         context.decodeAudioData(snare.response, function(buffer){buffers[1] = buffer;});
 		console.log("snare load & decoded");
 		document.getElementById("snareloading").innerHTML = 'Snare Loaded';
+		document.getElementById("snarePad").disabled = false;
     }
     snare.send();
 
@@ -130,6 +132,7 @@
         context.decodeAudioData(hihat.response, function(buffer){buffers[2] = buffer;});
 		console.log("hat load & decoded");
 		document.getElementById("hatloading").innerHTML = 'Hat Loaded';
+		document.getElementById("hihatPad").disabled = false;
     }
     hihat.send();
 	
@@ -141,6 +144,7 @@
         context.decodeAudioData(loop.response, function(buffer){buffers[3] = buffer;});
 		console.log("loop load & decoded");
 		document.getElementById("looploading").innerHTML = 'Loop Loaded';
+		document.getElementById("loopBtn").disabled = false;
     }
     loop.send();
 
