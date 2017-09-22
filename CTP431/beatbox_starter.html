@@ -62,6 +62,14 @@
 
 <h1> Homework#1: Beatbox </h1>
 <br>
+<div id="explain" align = 'center'>
+<p>This is the page for Yusung Sim's HW#01 of 2017 Fall semester CTP431 course.</p>
+<p>Using WebAudio API, the page simulates simple beatbox drum machine and loop player.</P>
+<p>For kick, snare, and hi-hat samples, beatbox sample and electronic drum samples were mixed.</p>
+<p>For loop, the intro guitar loop of Crush-2411 was used.</p>
+<p>Play or stop the loop, and press a, s, l keys for pushing buttons. Have fun!</p>
+<br>
+</div>
 <div id = "kick" align = "center">
 	<p id="kickloading">Loading...</p>
     <button id="kickPad" onmousedown="playdrum(0)" disabled> Kick ('a' key)</button>
@@ -86,13 +94,7 @@
 	<p id="loopVolLabel"></p>
 	<input class="volume" onchange="changegain(3,this.value)" id="loopVol" title="Loop volume" type="range" min="-24" max ="0" value = "-12">
 </div>
-<div id="explain" align = 'center'>
-<p>This is the page for Yusung Sim's HW#01 of 2017 Fall semester CTP431 course.</p>
-<p>Using WebAudio API, the page simulates simple beatbox drum machine and loop player.</P>
-<p>For kick, snare, and hi-hat samples, beatbox sample and electronic drum samples were mixed.</p>
-<p>For loop, the intro guitar loop of Crush-2411 was used.</p>
-<p>Play or stop the loop, and press a, s, l keys for pushing buttons. Have fun!</p>
-</div>
+
 
 <script>
     var context = new (window.AudioContext || window.webkitAudioContext)();
