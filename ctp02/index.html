@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Music Visualization - Sim Yusung</title>
+	<script src="library/p5.js"></script>
+	<script src="library/p5.dom.js"></script>
+	<script src="library/p5.sound.js"></script>
+	<script src="sketch.js"></script>
+	<style>
+		body{padding: 0; margin: 0;}
+		button{font-size: 20px; height: 40px;}
+		h1{margin-left: 10px;}
+		p{margin-left: 10px}
+	</style>
+</head>
+<body>
+	<div id="sketch-holder"></div>
+
+	<button id="button0" onclick="playSong(0)">KSHMR - Wildcard</button>
+	<button id="button1" onclick="playSong(1)">Avicii - Addicted to You</button>
+	<button id="button2" onclick="playSong(2)">The Chainsmokers - Roses</button>
+	<button id="button3" onclick="playSong(3)">Skrillex - Bangarang</button>
+	<button id="button4" onclick="playSong(4)">Stop</button>
+
+	<h1>CTP431 HW#2 - Music Visualization</h1>
+	<p><b>20160347 Sim Yusung</b></p>
+	<p>This is a music visualization project for KAIST CTP431 course of 2017 Fall semester.</p>
+	<p>Choose music from buttons, or stop. Enjoy Visualizations!</p>
+	<p>Recommended on wide-screen, performance devices.</p>
+	<p>Concept and idea is from Youtube EDM channels like 
+	<a href="https://www.youtube.com/channel/UCJ6td3C9QlPO9O_J5dF4ZzA">Monstercat</a>
+	or 
+	<a href="https://www.youtube.com/channel/UC_aEa8K-EOJ3D6gOs7HcyNg">NoCopyrightSounds</a>.</p>
+	<p>Used p5.js, p5.sound.js. Amplitude and FFT analyzers are used to extract certain levels from the song and convert into visualizations.</p>
+</body>
+</html>
