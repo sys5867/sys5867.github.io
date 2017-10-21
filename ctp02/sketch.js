@@ -10,7 +10,7 @@ var gain
 
 var numberOfSong = 4
 var titles = ["KSHMR - Wildcard (feat. Sidnie Tipton)", "Avicii - Addicted to You", "The Chainsmokers - Roses (feat. ROZES)", "Skrillex - Bangarang (feat. Sirah)"]
-var files = ["KSHMR Wildcard.mp3", "Avicii Addicted to You.mp3", "Chainsmokers Roses.mp3", "Skrillex Bangarang.mp3"]
+var files = ["KSHMR Wildcard.mp3", "Avicii Addicted to you.mp3", "Chainsmokers Roses.mp3", "Skrillex Bangarang.mp3"]
 var currentId = 0
 var song = new Array(numberOfSong)
 var buttons = new Array(numberOfSong)
