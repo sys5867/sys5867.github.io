@@ -3,8 +3,12 @@ var context = new AudioContext()
 var synth;
 
 var synth_params = {
+	sawLevel:1,
+	squareLevel:0,
+	sinLevel:0,
+	triangleLevel:0,
 	lfoRate:0,
-	lfoDepth: 5,
+	lfoDepth: 50,
 	filterCutoffFreq:5000,
 	filterQ:1,
 	filterEnvAttackTime: 0.1,
@@ -14,7 +18,8 @@ var synth_params = {
 	ampEnvAttackTime: 0.1,
 	ampEnvDecayTime: 0.2,
 	ampEnvSustainLevel: 0.9,
-	ampEnvReleaseTime: 0.1
+	ampEnvReleaseTime: 0.1,
+	distortionLevel : 0.5
 };
 
 var delay_params = {
@@ -23,16 +28,24 @@ var delay_params = {
 	delayWetDry: 0.1
 }
 var reverb_params = {
-	reverbWetDry: 0.5
+	reverbWet: 0.5
 };
 
 // default
 var temp = context.createOscillator();
-
 var synth = new Synth(context, synth_params);
 var delay = new Delay(context, delay_params);
+var reverb = new Reverb(context, reverb_params);
+console.log(reverb);
+console.log(delay);
 
+//rewire
 synth.connect(delay);
+delay.wetGain.disconnect(context.destination);
+delay.dryGain.disconnect(context.destination);
+delay.wetGain.connect(reverb.input);
+delay.dryGain.connect(reverb.input);
+
 
 // launch MIDI 	
 if (navigator.requestMIDIAccess)
@@ -42,15 +55,86 @@ else
 
 
 nx.onload = function() {
+	//dummy
+	gui_saw.min = 0;
+	gui_saw.max = 1;
+	gui_saw.set({value: synth_params.sawLevel});
+	gui_saw.on('*', function (data){
+		synth.updateParams('saw', data.value);
+	})
+
+	gui_square.min = 0;
+	gui_square.max = 1;
+	gui_square.set({value: synth_params.squareLevel});
+	gui_square.on('*', function (data){
+		synth.updateParams('square', data.value);
+	})
+
+	gui_sin.min = 0;
+	gui_sin.max = 1;
+	gui_sin.set({value: synth_params.sinLevel});
+	gui_sin.on('*', function (data){
+		synth.updateParams('sin', data.value);
+	})
+
+	gui_triangle.min = 0;
+	gui_triangle.max = 1;
+	gui_triangle.set({value: synth_params.triangleLevel});
+	gui_triangle.on('*', function (data){
+		synth.updateParams('triangle', data.value);
+	})
+
 
 	// OSC
+	gui_lfo_rate.min = 0;
+	gui_lfo_rate.max = 20;
+	gui_lfo_rate.set({value: synth_params.lfoRate});
+	gui_lfo_rate.on('*', function(data){
+		synth.updateParams('lfo_rate', data.value);
+	})
+
+	gui_lfo_depth.min = 0;
+	gui_lfo_depth.max = 100;
+	gui_lfo_depth.set({value: synth_params.lfoDepth});
+	gui_lfo_depth.on('*', function(data){
+		synth.updateParams('lfo_depth', data.value);
+	})
+
 
 	// Filter
-	gui_filter_freq.min = 100;	
-	gui_filter_freq.max = 10000;	
+	gui_filter_freq.min = 500;	
+	gui_filter_freq.max = 23500;	
 	gui_filter_freq.set({ value: synth_params.filterCutoffFreq })
 	gui_filter_freq.on('*',function(data) {
 		synth.updateParams('filter_freq', data.value);
+	});
+
+	gui_filter_env_attack.min = 0;	
+	gui_filter_env_attack.max = 3;	
+	gui_filter_env_attack.set({ value: synth_params.filterEnvAttackTime })
+	gui_filter_env_attack.on('*',function(data) {
+		synth.updateParams('filter_env_attack', data.value);
+	});
+
+	gui_filter_env_decay.min = 0;	
+	gui_filter_env_decay.max = 3;	
+	gui_filter_env_decay.set({ value: synth_params.filterEnvDecayTime })
+	gui_filter_env_decay.on('*',function(data) {
+		synth.updateParams('filter_env_decay', data.value);
+	});
+
+	gui_filter_env_sustain.min = 0;	
+	gui_filter_env_sustain.max = 1;	
+	gui_filter_env_sustain.set({ value: synth_params.filterEnvSustainLevel })
+	gui_filter_env_sustain.on('*',function(data) {
+		synth.updateParams('filter_env_sustain', data.value);
+	});
+
+	gui_filter_env_release.min = 0;	
+	gui_filter_env_release.max = 3;	
+	gui_filter_env_release.set({ value: synth_params.filterEnvReleaseTime })
+	gui_filter_env_release.on('*',function(data) {
+		synth.updateParams('filter_env_release', data.value);
 	});
 
 	// Amp ENV
@@ -98,6 +182,24 @@ nx.onload = function() {
 	gui_delay_wet_dry.on('*',function(data) {
 		delay.updateParams('delay_dry_wet', data.value);
 	});
+
+	// reverb
+	gui_reverb_wet.min = 0;
+	gui_reverb_wet.max = 1;
+	gui_reverb_wet.set({ value: reverb_params.reverbWet })
+	gui_reverb_wet.on('*',function(data) {
+		reverb.updateParams('reverb_wet', data.value);
+	});
+
+	// distortion
+	gui_distortion.min = 0;
+	gui_distortion.max = 1000;
+	gui_distortion.set({ value: synth_params.distortionLevel })
+	gui_distortion.on('*',function(data) {
+		synth.updateParams('distortion', data.value);
+	});
+
+
 
 	// Keyboard 	
 	gui_keyboard.octaves = 3;

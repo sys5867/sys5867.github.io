@@ -4,9 +4,10 @@
 	<title> Homework #3: Music Synthesizer  </title>
 	<link  href='hw3.css' rel='stylesheet'>
 	<script src="nexusUI.js"></script>
-	<script src="synth_startup.js"></script>
+	<script src="synth.js"></script>
 	<script src="delay.js"></script>
-	<script src="hw3_startup.js"></script>
+	<script src="reverb.js"></script>
+	<script src="hw3.js"></script>
 </head>
 
 
@@ -14,7 +15,11 @@
 	<h1> Homework #3: Music Synthesizer </h1>
 
 	<div id="dummy">
-	<p class="panelLabel"> CTP431 Synth </p>
+	<p class="panelLabel"> OSC Levels </p>
+	<canvas nx="dial" id="gui_saw" height="120" width="80" label="SAW"> </canvas> 
+	<canvas nx="dial" id="gui_square" height="120" width="80" label="SQUARE"> </canvas> 
+	<canvas nx="dial" id="gui_sin" height="120" width="80" label="SIN"> </canvas> 
+	<canvas nx="dial" id="gui_triangle" height="120" width="80" label="TRIANGLE"> </canvas> 
 	</div>
 
 	<div id="osc">
@@ -25,8 +30,8 @@
 
 	<div id="filter">
 	<p class="panelLabel"> Filter </p>
-	<canvas nx="dial" id="gui_filter_freq" height="120" width="80" label="Cut-off"> </canvas> 
-	<canvas nx="dial" id="gui_filter_env_attack" height="120" width="80" label="Attrack"> </canvas> 
+	<canvas nx="dial" id="gui_filter_freq" height="120" width="80" label="Cut-off"> </canvas>
+	<canvas nx="dial" id="gui_filter_env_attack" height="120" width="80" label="Attack"> </canvas> 
 	<canvas nx="dial" id="gui_filter_env_decay" height="120" width="80" label="Decay"> </canvas> 
 	<canvas nx="dial" id="gui_filter_env_sustain" height="120" width="80" label="Sustain"> </canvas> 
 	<canvas nx="dial" id="gui_filter_env_release" height="120" width="80" label="Release"> </canvas> 
@@ -50,7 +55,12 @@
 
 	<div id="reverb">
 	<p class="panelLabel"> Reverb </p>
-	<canvas nx="dial" id="gui_reverb_time" height="120" width="80" label="Wet/Dry"> </canvas> 
+	<canvas nx="dial" id="gui_reverb_wet" height="120" width="80" label="Wet/Dry"> </canvas> 
+	</div>
+
+	<div id="distortion">
+	<p class="panelLabel"> Distortion </p>
+	<canvas nx="dial" id="gui_distortion" height="120" width="80" label="Amount"> </canvas> 
 	</div>
 
 	<br>

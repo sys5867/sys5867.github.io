@@ -30,7 +30,7 @@ div#dummy{
     padding:10px;
     margin: 5px 5px 5px 5px;
     background: rgb(120, 120, 120);
-    width:85px;
+    width:350px;
     height:150px;
     float:left;
 }
@@ -38,7 +38,7 @@ div#dummy{
     padding:10px;
     margin: 5px 5px 5px 5px;
     background: rgb(168, 168, 255);
-    width:165px;
+    width:175px;
     height:150px;
     float:left;
 }
@@ -46,7 +46,7 @@ div#dummy{
     padding:10px;
     margin: 5px 5px 5px 5px;
     background: rgb(168, 255, 189);
-    width:420px;
+    width:450px;
     height:150px;
     float:left;
 }
@@ -54,7 +54,7 @@ div#dummy{
     padding:10px;
     margin: 5px 5px 5px 5px;
     background: rgb(213, 132, 240);
-    width:335px;
+    width:355px;
     height:150px;
     clear: left;
     float:left;
@@ -63,7 +63,7 @@ div#dummy{
     padding:10px;
     margin: 5px 5px 5px 5px;
     background: rgb(194, 199, 105);
-    width:250px;
+    width:270px;
     height:150px;
     float: left;
 }
@@ -75,8 +75,23 @@ div#dummy{
     height:150px;
     float:left;
 }
+#distortion{
+    padding:10px;
+    margin: 5px 5px 5px 5px;
+    background: rgb(67, 160, 201);
+    width:85px;
+    height:150px;
+    float:left;
+}
 #keys{
     padding:5px;
     margin: 5px 0px 5px 0px;
     clear:left;
+}
+#p5canvas{
+    padding:10px;
+    margin: 5px 5px 5px 5px;
+    width:85px;
+    height:150px;
+    float:left;
 }
