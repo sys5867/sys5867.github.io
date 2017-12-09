@@ -1,0 +1,100 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CTP431 Final Project</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="style.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src="text_to_music.js"></script>
+	<script src="NexusUI.js"></script>
+	<script src="sequencer.js"></script>
+</head>
+
+<body>
+	<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Text to Music Generator</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#target">Explanation</a></li>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+	<div class="container-fluid">
+		<div class="container-fluid">
+	<h1>KAIST 2017 Fall CTP431 Final Project</h1>
+	<h2>20160347 Sim Yusung</h2>
+	<p class="lead">This project is text-to-music generator. It generates rythm and melody from each lines of the text you type in. Type in some text, lines divided by newline, and Click 'Create Sequence'. Before creting sequence, you can select some options by clicking the buttons. Then you can play and stop the created sequence by 'Start Sequence' and 'Stop Sequence'.</p>
+	</div>
+
+	<div class="container-fluid">
+		<h4>1. Frequency of Melody notes</h4>
+		<button id="input_text_submit" class="btn btn-default" onclick="melody_onclick(3)" >Low melody frequency</button>
+		<button id="input_text_submit" class="btn btn-default" onclick="melody_onclick(4)" >Mid melody frequency</button>
+		<button id="input_text_submit" class="btn btn-default" onclick="melody_onclick(5)" >High melody frequency</button>
+	</div>
+	<div class="container-fluid">
+		<h4>2. How much melody is adjusted to chord tones</h4>
+		<button id="input_text_submit" class="btn btn-default" onclick="chord_onclick(1)" >More chordtone</button>
+		<button id="input_text_submit" class="btn btn-default" onclick="chord_onclick(2)" >Somewhat chordtone</button>
+		<button id="input_text_submit" class="btn btn-default" onclick="chord_onclick(4)" >Less chordtone</button>
+	</div>
+	<div class="container-fluid">
+		<h4>3. Frequency of bass notes</h4>
+		<button id="input_text_submit" class="btn btn-default" onclick="bass_onclick(1)" >Low bass frequency</button>
+		<button id="input_text_submit" class="btn btn-default" onclick="bass_onclick(2)" >Mid bass frequency</button>
+		<button id="input_text_submit" class="btn btn-default" onclick="bass_onclick(4)" >High bass frequency</button>
+	</div>
+	<div class="container-fluid">
+		<h4>4. BPM of the song</h4>
+		<div class="row">
+		  <div class="col-md-4"><input  class="form-control" id="bpmform" placeholder="150"></div>
+		  <div class="col-md-4"><button id="bpm_button" class="btn btn-default" onclick="bpm_onclick()">Set BPM</button></div>
+		  <div class="col-md-4"></div>
+		</div>
+	</div>
+	
+
+
+
+	<div class = "container-fluid">
+		<h4>Type in your Text</h4>
+	<textarea class="form-control" rows="15" id="input_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+	</div>
+
+	<div class="container-fluid">
+		<button id="input_text_submit" class="btn btn-primary" onclick="button_onclick()" >Create Sequence</button>
+		<button id="sequence_start" class="btn btn-primary" onclick="start_sequence()">Start Sequence</button>
+		<button id="sequence_stop" class="btn btn-primary" onclick="stop_sequence()">Stop Sequence</button>
+	</div>
+	</div>
+
+	<div class="container-fluid" id="target">
+		<h1>Explanation</h1>
+		<p>The generator thinks each line as one pattern for fixed length of bars, like in step sequencer. Then it will try to change patterns in the text line to pattern of notes.</p>
+		<p>For rhythm, kick, snare, and hat is used. Snare pattern is fixed for 2, 4 offbeat.</p>
+		<p>Kick pattern is generated from the first line. It extracts 8 words from line. For each words, if the word starts with consonant, a kick note is pushed, Otherwise, it does not.</p>
+		<p>Hat pattern is generated from the second line. It will see length of word behind the vowel and if it's long enought, it will push a hat note.</p>
+		<p>For bass notes, the chord is fixed as Dm7-G7-CM7-FM7. By the frequency of bass notes, it will generate rock bass pttern of the chords.</p>
+		<p>For melody notes, The note's pitch position will be moved according to vowel. If vowel is easier to speak, (for instance, a and e), then the moveement increase. Else, the movement is restricted. Then, for melody note frequency, if the word is longer than some parameter, the melody note is pushed. Else, it's not pushed. By this, the frequency of playing notes can be determined. Finally, for adjusting melody to chord tones, generator tries to adjust a pitch of note, by some period determined by the parameter. Chord tones of each chord is fixed, so generator can find closest chord tone and then change to it.</p>
+	</div>
+</body>
+
+</html>
