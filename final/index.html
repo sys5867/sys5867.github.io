@@ -12,7 +12,7 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-default">
+<nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -22,13 +22,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Text to Music Generator</a>
+      <a class="navbar-brand" href="index.html">Text to Music Generator</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#target">Explanation</a></li>
+        <li><a href="final_project.html">Explanation</a></li>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -38,7 +38,6 @@
 		<div class="container-fluid">
 	<h1>KAIST 2017 Fall CTP431 Final Project</h1>
 	<h2>20160347 Sim Yusung</h2>
-	<h2>*Some files are slow to load. Please wait if some sound are missing.</h2>
 	<p class="lead">This project is text-to-music generator. It generates rythm and melody from each lines of the text you type in. Type in some text, lines divided by newline, and Click 'Create Sequence'. Before creting sequence, you can select some options by clicking the buttons. Then you can play and stop the created sequence by 'Start Sequence' and 'Stop Sequence'.</p>
 	</div>
 
@@ -85,16 +84,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 		<button id="sequence_start" class="btn btn-primary" onclick="start_sequence()">Start Sequence</button>
 		<button id="sequence_stop" class="btn btn-primary" onclick="stop_sequence()">Stop Sequence</button>
 	</div>
-	</div>
-
-	<div class="container-fluid" id="target">
-		<h1>Explanation</h1>
-		<p>The generator thinks each line as one pattern for fixed length of bars, like in step sequencer. Then it will try to change patterns in the text line to pattern of notes.</p>
-		<p>For rhythm, kick, snare, and hat is used. Snare pattern is fixed for 2, 4 offbeat.</p>
-		<p>Kick pattern is generated from the first line. It extracts 8 words from line. For each words, if the word starts with consonant, a kick note is pushed, Otherwise, it does not.</p>
-		<p>Hat pattern is generated from the second line. It will see length of word behind the vowel and if it's long enought, it will push a hat note.</p>
-		<p>For bass notes, the chord is fixed as Dm7-G7-CM7-FM7. By the frequency of bass notes, it will generate rock bass pttern of the chords.</p>
-		<p>For melody notes, The note's pitch position will be moved according to vowel. If vowel is easier to speak, (for instance, a and e), then the moveement increase. Else, the movement is restricted. Then, for melody note frequency, if the word is longer than some parameter, the melody note is pushed. Else, it's not pushed. By this, the frequency of playing notes can be determined. Finally, for adjusting melody to chord tones, generator tries to adjust a pitch of note, by some period determined by the parameter. Chord tones of each chord is fixed, so generator can find closest chord tone and then change to it.</p>
 	</div>
 </body>
 

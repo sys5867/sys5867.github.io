@@ -20,7 +20,6 @@ function loadSample(url, bufferid) { // the url can be full path or relative
   request.onload = function() {
     context.decodeAudioData(request.response, function(buffer) {
       sampleBufferArray[bufferid] = buffer;
-      console.log("loaded " + url);
     });
   }
   request.send();
